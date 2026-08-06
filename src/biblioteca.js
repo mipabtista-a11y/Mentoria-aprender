@@ -151,3 +151,94 @@ export const BIBLIOTECA = {
       observar: "Se ela usa referências de horário ou só a sequência das ações.",
     },
     
+
+  "Coordenação motora": [
+    {
+      titulo: "Circuito de Obstáculos",
+      tempo: "15-20 min",
+      objetivo: "Coordenação motora grossa e equilíbrio.",
+      materiais: "Almofadas, cadeiras e fita crepe no chão.",
+      passos: [
+        "Montem juntos um circuito simples.",
+        "Cronometre o percurso.",
+        "Repitam tentando melhorar o próprio tempo.",
+      ],
+      observar: "Se ela planeja o percurso antes de começar.",
+    },
+    {
+      titulo: "Recorte e Contas",
+      tempo: "15 min",
+      objetivo: "Coordenação motora fina e precisão.",
+      materiais: "Tesoura sem ponta, papel, contas e barbante.",
+      passos: [
+        "Recorte formas simples seguindo uma linha.",
+        "Ou enfie as contas seguindo um padrão de cores.",
+        "Aumente a complexidade do padrão aos poucos.",
+      ],
+      observar: "Como ela segura a tesoura e se o traçado acompanha a linha.",
+    },
+  ],
+
+  "Dominância lateral": [
+    {
+      titulo: "Jogo do Espelho",
+      tempo: "10 min",
+      objetivo: "Consciência corporal e lateralidade.",
+      materiais: "Nenhum.",
+      passos: [
+        "Fiquem de frente um para o outro, como num espelho.",
+        "Movimente um lado do corpo e peça para ela imitar.",
+        "Alternem quem faz e quem imita.",
+      ],
+      observar: "Se ela espelha corretamente ou copia o mesmo lado.",
+    },
+    {
+      titulo: "Alvo com a Mão Preferida",
+      tempo: "10-15 min",
+      objetivo: "Observar a dominância manual.",
+      materiais: "Bolinhas de papel e um alvo (cesto, caixa).",
+      passos: [
+        "Arremesse a bolinha no alvo, dez vezes.",
+        "Observe qual mão ela escolhe sem ser avisada.",
+        "Repitam com a outra mão e comparem o resultado.",
+      ],
+      observar: "Se ela troca de mão no meio ou mantém a mesma.",
+    },
+  ],
+
+  "Funções executivas": [
+    {
+      titulo: "Semáforo das Regras",
+      tempo: "10-15 min",
+      objetivo: "Controle inibitório.",
+      materiais: "Três papéis coloridos: verde, amarelo e vermelho.",
+      passos: [
+        "Combinem uma ação para cada cor (verde anda, vermelho para, amarelo agacha).",
+        "Mostre os papéis em ordem aleatória.",
+        "Aumente a velocidade a cada rodada.",
+      ],
+      observar: "Se ela consegue parar o movimento já iniciado.",
+    },
+    {
+      titulo: "Troca de Regra",
+      tempo: "15 min",
+      objetivo: "Flexibilidade cognitiva.",
+      materiais: "Cartas ou objetos com cor e forma diferentes.",
+      passos: [
+        "Peça para separar por cor.",
+        "No meio da tarefa, mude a regra para forma, sem avisar antes.",
+        "Observe quanto tempo leva para se adaptar.",
+      ],
+      observar: "Se ela insiste na regra antiga ou muda com facilidade.",
+    },
+    {
+      titulo: "Missão Passo a Passo",
+      tempo: "20 min",
+      objetivo: "Planejamento e memória de trabalho.",
+      materiais: "Instruções escritas em tiras de papel.",
+      passos: [
+        "Dobre um avião de papel seguindo instruções reveladas uma por vez.",
+        "A criança só recebe a próxima quando terminar a anterior.",
+        "No fim, peça para ela explicar o processo inteiro.",
+      ],
+      observar: "
