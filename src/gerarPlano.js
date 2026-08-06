@@ -337,7 +337,10 @@ export function gerarPlano(triagem, biblioteca) {
     pontosFortes: montarPontosFortes(triagem),
     alertas: montarAlertas(triagem),
     mensagemAbertura: "",
-    geradoEm: new Date().toISOString().slice(0, 10),
+    geradoEm: (() => {
+      const d = new Date();
+      return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+    })(),
     aprovado: false,
   };
 }
