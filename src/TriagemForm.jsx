@@ -134,8 +134,79 @@ function LinhaHabilidade({ nome, valor, onChange }) {
   return (
     <div style={{ padding: "13px 0", borderBottom: `1px solid #F2EDE2` }}>
       <div style={{ fontSize: 13.5, color: INK, fontWeight: 600, marginBottom: 8 }}>{nome}</div>
-      
-{passo === 1 && (
+      <div style={{ display: "flex", gap: 6 }}>
+        {NIVEIS_HABILIDADE.map((n) => {
+          const ativo = valor === n.v;
+          return (
+            <button key={n.v} type="button" onClick={() => onChange(ativo ? undefined : n.v)}
+              style={{ flex: 1, padding: "9px 4px", borderRadius: 10, fontSize: 11, fontWeight: 700,
+                cursor: "pointer", fontFamily: "inherit", lineHeight: 1.3,
+                border: ativo ? "none" : `1px solid ${LINE}`,
+                background: ativo ? n.cor : "#fff",
+                color: ativo ? "#fff" : MUTED }}>
+              {n.curto}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// ===== Etapas =====
+const ETAPAS = [
+  { id: 1, titulo: "Sobre a criança", intro: "Vamos começar pelo básico." },
+  { id: 2, titulo: "O que trouxe vocês até aqui", intro: "Quanto mais detalhes, mais personalizado fica o plano." },
+  { id: 3, titulo: "A rotina do dia a dia", intro: "Isso ajuda a encaixar as atividades no melhor momento." },
+  { id: 4, titulo: "Como seu filho aprende", intro: "Cada criança tem um jeito próprio de aprender." },
+  { id: 5, titulo: "As habilidades hoje", intro: "Não existe resposta certa — é o olhar de vocês que importa." },
+  { id: 6, titulo: "A rotina de vocês", intro: "Para o plano caber de verdade na vida da família." },
+];
+
+export default function TriagemForm({ valor, onChange, onEnviar, enviando }) {
+  const [passo, setPasso] = useState(1);
+  const t = valor;
+  const set = (campo) => (v) => onChange({ ...t, [campo]: v });
+  const setHab = (nome, v) => onChange({ ...t, habilidades: { ...t.habilidades, [nome]: v } });
+
+  const etapa = ETAPAS[passo - 1];
+  const total = ETAPAS.length;
+  const podeEnviar = t.nome.trim() && t.preocupacaoPrincipal.trim();
+
+  function avancar() {
+    setPasso(passo + 1);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+  function voltar() {
+    setPasso(passo - 1);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  return (
+    <div style={{ background: CREAM, minHeight: "100vh", fontFamily: "system-ui, -apple-system, sans-serif" }}>
+      <div style={{ maxWidth: 620, margin: "0 auto", padding: "28px 18px 40px" }}>
+
+        {/* Progresso */}
+        <div style={{ display: "flex", gap: 4, marginBottom: 8 }}>
+          {ETAPAS.map((e) => (
+            <div key={e.id} style={{ flex: 1, height: 4, borderRadius: 2,
+              background: e.id <= passo ? GREEN : "#E8E1D2", transition: "background .25s" }} />
+          ))}
+        </div>
+        <div style={{ fontSize: 11.5, color: MUTED, marginBottom: 26, letterSpacing: .3 }}>
+          Etapa {passo} de {total}
+        </div>
+
+        {/* Cabeçalho da etapa */}
+        <div style={{ marginBottom: 22 }}>
+          <div style={{ fontSize: 23, fontWeight: 700, color: GREEN, lineHeight: 1.25 }}>{etapa.titulo}</div>
+          <div style={{ fontSize: 13.5, color: MUTED, marginTop: 6, fontStyle: "italic" }}>{etapa.intro}</div>
+        </div>
+
+        <div style={{ background: CARD, borderRadius: 18, padding: "22px 20px",
+          boxShadow: "0 2px 14px rgba(0,0,0,.05)", marginBottom: 18 }}>
+
+          {passo === 1 && (
             <>
               <Linha><Campo largura={2} label="Nome da criança" value={t.nome} onChange={set("nome")} /></Linha>
               <Linha>
@@ -292,3 +363,105 @@ function LinhaHabilidade({ nome, valor, onChange }) {
               </Pergunta>
             </>
           )}
+
+          {passo === 5 && (
+            <>
+              <div style={{ fontSize: 13, color: MUTED, marginBottom: 16, lineHeight: 1.5 }}>
+                Marque uma opção em cada linha, pensando em como seu filho está hoje.
+              </div>
+              {HABILIDADES_TRIAGEM.map((h) => (
+                <LinhaHabilidade key={h} nome={h} valor={t.habilidades[h]} onChange={(v) => setHab(h, v)} />
+              ))}
+            </>
+          )}
+
+          {passo === 6 && (
+            <>
+              <Pergunta numero="1" texto="Quem será o principal responsável por realizar as atividades com a criança?">
+                <Opcoes options={["Mãe", "Pai", "Ambos", "Avós"]}
+                  value={t.responsavelAtividades} onChange={set("responsavelAtividades")} />
+                <Complemento>
+                  <Campo largura={2} label="Outro" value={t.outroResponsavel} onChange={set("outroResponsavel")} />
+                </Complemento>
+              </Pergunta>
+
+              <Pergunta numero="2" texto="Qual é o melhor período do dia para realizar as atividades?">
+                <Opcoes options={["Manhã", "Tarde", "Noite", "Varia conforme a rotina"]}
+                  value={t.melhorPeriodo} onChange={set("melhorPeriodo")} />
+              </Pergunta>
+
+              <Pergunta numero="3" texto="Vocês conseguem reservar 20 minutos por dia, em 4 dias da semana?">
+                <Opcoes options={["Sim", "Precisaremos ajustar nossa rotina"]}
+                  value={t.consegue20min} onChange={set("consegue20min")} />
+              </Pergunta>
+
+              <Pergunta numero="4" texto="Como preferem receber os materiais?">
+                <Opcoes options={["E-mail", "WhatsApp", "Ambos"]}
+                  value={t.comoReceberMateriais} onChange={set("comoReceberMateriais")} />
+              </Pergunta>
+
+              <Pergunta numero="5" texto="Qual é a melhor forma de receber as orientações?">
+                <Opcoes options={["Texto", "Áudio", "Texto e áudio"]}
+                  value={t.formatoMateriais} onChange={set("formatoMateriais")} />
+              </Pergunta>
+
+              <Pergunta numero="6" texto="O que pode dificultar a realização das atividades na sua rotina?"
+                ajuda="Pode marcar mais de uma opção.">
+                <Opcoes multipla
+                  options={["Falta de tempo", "Cansaço da criança", "Cansaço dos responsáveis",
+                    "Dificuldade em manter uma rotina", "Resistência da criança"]}
+                  value={t.dificuldades} onChange={set("dificuldades")} />
+                <Complemento>
+                  <Campo largura={2} label="Outro" value={t.outraDificuldade} onChange={set("outraDificuldade")} />
+                </Complemento>
+              </Pergunta>
+
+              <Pergunta numero="7"
+                texto="Existe alguma informação sobre a rotina da família que a Michelle deva conhecer para personalizar melhor as atividades?">
+                <TextoLongo value={t.infoAdicional} onChange={set("infoAdicional")}
+                  placeholder="Fique à vontade para contar o que achar importante." />
+              </Pergunta>
+            </>
+          )}
+        </div>
+
+        {/* Navegação */}
+        <div style={{ display: "flex", gap: 10 }}>
+          {passo > 1 && (
+            <button type="button" onClick={voltar}
+              style={{ flex: 1, padding: "14px 20px", borderRadius: 13, border: `1.5px solid ${GREEN}`,
+                background: "transparent", color: GREEN, fontWeight: 700, fontSize: 14.5,
+                cursor: "pointer", fontFamily: "inherit" }}>
+              Voltar
+            </button>
+          )}
+          {passo < total ? (
+            <button type="button" onClick={avancar}
+              style={{ flex: 2, padding: "14px 20px", borderRadius: 13, border: "none", background: GREEN,
+                color: "#fff", fontWeight: 700, fontSize: 14.5, cursor: "pointer", fontFamily: "inherit" }}>
+              Continuar
+            </button>
+          ) : (
+            <button type="button" onClick={onEnviar} disabled={!podeEnviar || enviando}
+              style={{ flex: 2, padding: "14px 20px", borderRadius: 13, border: "none", background: CORAL,
+                color: "#fff", fontWeight: 700, fontSize: 14.5, fontFamily: "inherit",
+                cursor: podeEnviar && !enviando ? "pointer" : "not-allowed",
+                opacity: podeEnviar && !enviando ? 1 : .45 }}>
+              {enviando ? "Enviando..." : "Enviar para a Michelle"}
+            </button>
+          )}
+        </div>
+
+        {passo === total && (
+          <div style={{ fontSize: 12.5, color: MUTED, marginTop: 14, textAlign: "center", lineHeight: 1.55 }}>
+            A Michelle vai ler cada resposta, montar o plano da {t.nome || "criança"} e liberar para vocês.
+          </div>
+        )}
+
+        <div style={{ textAlign: "center", marginTop: 30, fontSize: 12, color: SAGE, fontStyle: "italic" }}>
+          Cada criança tem um jeito único de aprender.
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -1,7 +1,7 @@
 // ============================================
 // Biblioteca de jogos da Mentoria A.P.R.E.N.D.E.R.
 // Organizada por habilidade do framework das 10 habilidades.
-// Cada jogo traz o que os pais precisam para aplicar sem preparo previo.
+// Cada jogo traz o que os pais precisam para aplicar sem preparo prévio.
 // ============================================
 
 export const BIBLIOTECA = {
@@ -150,7 +150,19 @@ export const BIBLIOTECA = {
       ],
       observar: "Se ela usa referências de horário ou só a sequência das ações.",
     },
-    
+    {
+      titulo: "Calendário Vivo",
+      tempo: "10 min",
+      objetivo: "Dia, mês, ano e estações.",
+      materiais: "Um calendário à vista.",
+      passos: [
+        "Marquem juntos o dia atual, todo dia.",
+        "Pergunte o dia da semana, o mês e a estação.",
+        "Relacionem com datas que a família espera.",
+      ],
+      observar: "Se ela consulta o calendário sozinha depois de alguns dias.",
+    },
+  ],
 
   "Coordenação motora": [
     {
@@ -241,4 +253,75 @@ export const BIBLIOTECA = {
         "A criança só recebe a próxima quando terminar a anterior.",
         "No fim, peça para ela explicar o processo inteiro.",
       ],
-      observar: "
+      observar: "Se ela consegue recontar a sequência na ordem certa.",
+    },
+  ],
+
+  "Linguagem": [
+    {
+      titulo: "Continue a História",
+      tempo: "15 min",
+      objetivo: "Linguagem oral e sequência lógica.",
+      materiais: "Nenhum.",
+      passos: [
+        "Comece uma história com uma frase.",
+        "Alternem frases até chegar a um final.",
+        "Peça para ela recontar a história do começo.",
+      ],
+      observar: "Se a história tem começo, meio e fim ou se perde o fio.",
+    },
+    {
+      titulo: "Caça-Palavras Personalizado",
+      tempo: "15-20 min",
+      objetivo: "Leitura e escrita.",
+      materiais: "Um caça-palavras com palavras do interesse da criança.",
+      passos: [
+        "Monte com 6 a 8 palavras que ela goste.",
+        "Ela procura e circula cada uma.",
+        "No final, escreve uma frase usando uma delas.",
+      ],
+      observar: "Se ela lê a palavra inteira ou busca só pelas primeiras letras.",
+    },
+  ],
+
+  "Raciocínio lógico matemático": [
+    {
+      titulo: "Sequência com Objetos",
+      tempo: "15 min",
+      objetivo: "Reconhecimento de padrões.",
+      materiais: "Botões, tampinhas ou lápis de cor.",
+      passos: [
+        "Monte um padrão simples e peça para ela continuar.",
+        "Depois ela monta um padrão e você continua.",
+        "Aumente a complexidade a cada rodada.",
+      ],
+      observar: "Se ela verbaliza o padrão antes de continuar.",
+    },
+    {
+      titulo: "Resolva o Enigma",
+      tempo: "15-20 min",
+      objetivo: "Situação-problema e cálculo mental.",
+      materiais: "Papel e lápis, se ela quiser usar.",
+      passos: [
+        "Proponha um problema do cotidiano da família.",
+        "Deixe ela pensar em voz alta, sem corrigir no meio.",
+        "Aumente a dificuldade nas rodadas seguintes.",
+      ],
+      observar: "Qual caminho ela escolhe para chegar à resposta.",
+    },
+    {
+      titulo: "Mercadinho em Casa",
+      tempo: "20 min",
+      objetivo: "Cálculo aplicado e noção de valor.",
+      materiais: "Objetos da casa com preços em papéis, dinheiro de brinquedo ou moedas.",
+      passos: [
+        "Montem um mercadinho e definam os preços juntos.",
+        "A criança compra, calcula o total e confere o troco.",
+        "Invertam os papéis: ela vira a vendedora.",
+      ],
+      observar: "Se ela calcula de cabeça ou precisa registrar no papel.",
+    },
+  ],
+};
+
+export const HABILIDADES = Object.keys(BIBLIOTECA);

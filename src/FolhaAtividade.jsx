@@ -190,3 +190,24 @@ export default function FolhaAtividade({ crianca, dia, aoFechar }) {
             <div style={{ fontSize: 12.5, fontWeight: 700, color: INK, margin: "10px 0 4px" }}>{material.titulo}</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 10 }}>
               {material.tiras.map((tira, i) => (
+                <div key={i} style={{ border: `1.5px dashed ${LINE}`, borderRadius: 9, padding: "10px 13px", fontSize: 13 }}>
+                  {tira}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {jogo?.observar && (
+          <div style={{ background: "#FAFBF8", borderLeft: `3px solid ${SAGE}`, borderRadius: 8, padding: "12px 15px", fontSize: 13, lineHeight: 1.5 }}>
+            <b style={{ color: GREEN }}>Repare em:</b> {jogo.observar}
+          </div>
+        )}
+
+        <div style={{ textAlign: "center", marginTop: 30, fontSize: 11, color: SAGE, fontStyle: "italic" }}>
+          Michelle Giannotti Baptista · Psicopedagoga
+        </div>
+      </div>
+    </div>
+  );
+}
