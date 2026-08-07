@@ -6,9 +6,9 @@ import {
 } from "lucide-react";
 
 import TriagemForm, { TRIAGEM_VAZIA } from "./TriagemForm.jsx";
-import RevisaoPlano from "./RevisaoPlano.jsx";
+import RevisaoPlano from "./RevisaoPlano";
 import PainelLembretes from "./PainelLembretes.jsx";
-import FolhaAtividade from "./FolhaAtividade.jsx";
+import FolhaAtividade from "./FolhaAtividade";
 import { gerarPlano } from "./gerarPlano.js";
 import { BIBLIOTECA } from "./biblioteca.js";
 import { materialProntoDe } from "./materiaisProntos.js";
