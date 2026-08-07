@@ -270,17 +270,19 @@ function AppFamilia({ usuario, aoSair }) {
 
     const { data } = await supabase.from("criancas").select("*").eq("user_id", usuario.id);
     for (const c of data || []) {
-      const [{ data: plano }, { data: fb }, { data: regs }] = await Promise.all([
+      const [{ data: plano }, { data: fb }, { data: regs }, {data:gam}] = await Promise.all([
         supabase.from("planos").select("*").eq("crianca_id", c.id)
           .order("created_at", { ascending: false }).limit(1).maybeSingle(),
         supabase.from("feedback_semanal").select("*").eq("crianca_id", c.id)
           .order("semana_inicio", { ascending: false }).limit(1).maybeSingle(),
         supabase.from("registros").select("*").eq("crianca_id", c.id)
           .gte("date", inicioDaSemana()),
+        supabase.from("gamificacao_crianca").select("*").eq("crianca_id", c.id).maybeSingle(),
       ]);
       c.plano = plano;
       c.feedback = fb;
       c.registrosSemana = regs || [];
+      c.gamificacao = gam || { total_pontos: 0, total_selos: 0, sequencia_atual: 0 };
     }
     setCriancas(data || []);
 
