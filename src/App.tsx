@@ -46,7 +46,7 @@ function inicioDaSemana() {
 }
 
 // ===== Peças visuais =====
-function Card({ children, style, onClick }) {
+function Card({ children, style, onClick }: { children?: React.ReactNode; style?: React.CSSProperties; onClick?: () => void }) {
   return (
     <div onClick={onClick} style={{ background: CARD, borderRadius: 16, padding: 18,
       boxShadow: "0 2px 10px rgba(0,0,0,.05)", cursor: onClick ? "pointer" : "default", ...style }}>
@@ -55,7 +55,7 @@ function Card({ children, style, onClick }) {
   );
 }
 
-function Botao({ children, onClick, variante = "primario", largo, icone: Icone, ocupado, desabilitado }) {
+function Botao({ children, onClick, variante = "primario", largo, icone: Icone, ocupado, desabilitado }: { children?: React.ReactNode; onClick?: () => void; variante?: "primario" | "coral" | "contorno"; largo?: boolean; icone?: React.ComponentType<{ size?: number }>; ocupado?: boolean; desabilitado?: boolean }) {
   const estilos = {
     primario: { background: GREEN, color: "#fff", border: "none" },
     coral: { background: CORAL, color: "#fff", border: "none" },
@@ -74,7 +74,7 @@ function Botao({ children, onClick, variante = "primario", largo, icone: Icone, 
   );
 }
 
-function Cabecalho({ titulo, subtitulo, aoVoltar, acao }) {
+function Cabecalho({ titulo, subtitulo, aoVoltar, acao }: { titulo: string; subtitulo?: string; aoVoltar?: () => void; acao?: React.ReactNode }) {
   return (
     <div style={{ display: "flex", alignItems: "flex-start", gap: 12, marginBottom: 20 }}>
       {aoVoltar && (
@@ -93,7 +93,7 @@ function Cabecalho({ titulo, subtitulo, aoVoltar, acao }) {
   );
 }
 
-function Aba({ ativa, onClick, children }) {
+function Aba({ ativa, onClick, children }: { ativa: boolean; onClick?: () => void; children?: React.ReactNode }) {
   return (
     <button onClick={onClick}
       style={{ flex: 1, padding: "11px 8px", border: "none", borderRadius: 11, fontSize: 13,
