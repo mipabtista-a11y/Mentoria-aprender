@@ -315,13 +315,9 @@ function AppFamilia({ usuario, aoSair }) {
   async function assinar() {
     setIndoParaPagamento(true);
     try {
-      const resp = await fetch("/api/criar-checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId: usuario.id, email: usuario.email }),
-      });
-      const dados = await resp.json();
-      if (dados.url) window.location.href = dados.url;
+      const { data, error } = await supabase.functions.invoke("criar-checkout");
+      if (error) throw error;
+      if (data?.url) window.location.href = data.url;
     } finally {
       setIndoParaPagamento(false);
     }
