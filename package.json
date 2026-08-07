@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Mentoria Psicopedagogica A.P.R.E.N.D.E.R.",
   "private": true,
-  "dependencies": "typescript": {
+  "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
