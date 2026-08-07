@@ -104,7 +104,7 @@ function Aba({ ativa, onClick, children }) {
   );
 }
 
-function Vazio({ titulo, texto, children }) {
+function Vazio({ titulo, texto, children }: { titulo: string; texto: string; children?: React.ReactNode }) {
   return (
     <Card style={{ textAlign: "center", padding: 32 }}>
       <div style={{ fontWeight: 700, color: GREEN, marginBottom: 6, fontSize: 15 }}>{titulo}</div>
