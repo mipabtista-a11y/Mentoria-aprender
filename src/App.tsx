@@ -725,7 +725,7 @@ function AppMichelle({ usuario, aoSair }) {
   const carregar = useCallback(async () => {
     const { data } = await supabase.from("criancas").select("*").order("created_at", { ascending: false });
     for (const c of data || []) {
-      const [{ data: plano }, { data: triagem }, { data: regs }, { count: msgsNaoLidas }] = await Promise.all([
+      const [{ data: plano }, { data: triagem }, { data: regs }, { count: msgsNaoLidas },{ data: gam}] = await Promise.all([
         supabase.from("planos").select("*").eq("crianca_id", c.id)
           .order("created_at", { ascending: false }).limit(1).maybeSingle(),
         supabase.from("triagens").select("*").eq("crianca_id", c.id).maybeSingle(),
@@ -733,8 +733,10 @@ function AppMichelle({ usuario, aoSair }) {
           .gte("date", inicioDaSemana()),
         supabase.from("mensagens_chat").select("id", { count: "exact", head: true })
           .eq("crianca_id", c.id).eq("lida", false).neq("user_id", usuario.id),
+        supabase.from("gamificacao_crianca").select("*").eq("crianca_id", c.id).maybeSingle(),
       ]);
       c.plano = plano;
+      c.gamificacao = gam || { total_pontos: 0, total_selos: 0, sequencia_atual: 0 };
       c.triagem = triagem;
       c.registrosSemana = regs || [];
       c.mensagensNaoLidas = msgsNaoLidas || 0;
