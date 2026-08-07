@@ -54,6 +54,24 @@ function Card({ children, style, onClick }: { children?: React.ReactNode; style?
     </div>
   );
 }
+function PainelGamificacao({ pontos, selos, sequencia }: { pontos?: number; selos?: number; sequencia?: number }) {
+  return (
+    <Card style={{ display: "flex", justifyContent: "space-around", padding: 16, marginBottom: 16 }}>
+      <div style={{ textAlign: "center" }}>
+        <div style={{ fontSize: 22, fontWeight: 700, color: GREEN }}>{pontos ?? 0}</div>
+        <div style={{ fontSize: 12, color: MUTED }}>Pontos</div>
+      </div>
+      <div style={{ textAlign: "center" }}>
+        <div style={{ fontSize: 22, fontWeight: 700, color: CORAL }}>{selos ?? 0}</div>
+        <div style={{ fontSize: 12, color: MUTED }}>Selos</div>
+      </div>
+      <div style={{ textAlign: "center" }}>
+        <div style={{ fontSize: 22, fontWeight: 700, color: GREEN }}>{sequencia ?? 0}🔥</div>
+        <div style={{ fontSize: 12, color: MUTED }}>Sequência</div>
+      </div>
+    </Card>
+  );
+}
 
 function Botao({ children, onClick, variante = "primario", largo, icone: Icone, ocupado, desabilitado }: { children?: React.ReactNode; onClick?: () => void; variante?: "primario" | "coral" | "contorno"; largo?: boolean; icone?: React.ComponentType<{ size?: number }>; ocupado?: boolean; desabilitado?: boolean }) {
   const estilos = {
