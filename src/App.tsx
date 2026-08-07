@@ -472,6 +472,7 @@ function TelaFamiliaCrianca({ crianca, aoVoltar, usuario, aoRegistrar }) {
   return (
     <div>
       <Cabecalho titulo={crianca.nome} subtitulo={`${crianca.idade || "—"} anos`} aoVoltar={aoVoltar} />
+      <PainelGamificacao pontos={crianca.gamificacao?.total_pontos} selos={crianca.gamificacao?.total_selos} sequencia={crianca.gamificacao?.sequencia_atual} />
 
       {!liberado ? (
         <Vazio titulo="A Michelle está montando o plano"
