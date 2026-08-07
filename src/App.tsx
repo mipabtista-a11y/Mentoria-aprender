@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { createClient } from "@supabase/supabase-js";
 import {
   Heart, LogOut, ChevronLeft, ChevronRight, Plus, Bell, Send,
-  Check, Clock, MessageSquare, ClipboardList, Users, AlertCircle, Printer,
+  Check, Clock, MessageSquare, ClipboardList, Users, AlertCircle, Printer, Sparkles,
 } from "lucide-react";
 
 import TriagemForm, { TRIAGEM_VAZIA } from "./TriagemForm.jsx";
