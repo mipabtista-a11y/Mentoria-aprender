@@ -448,6 +448,7 @@ function AppFamilia({ usuario, aoSair }) {
                       ? `${c.registrosSemana.length} de 4 atividades esta semana`
                       : "Triagem enviada — aguardando a Michelle"}
                   </div>
+                  <div style={{ fontSize: 11, color: GREEN, marginTop: 2 }}>🏆 {c.gamificacao?.total_pontos ?? 0} pts · {c.gamificacao?.total_selos ?? 0} selos</div>
                 </div>
                 <ChevronRight size={18} color={SAGE} style={{ flexShrink: 0 }} />
               </div>
