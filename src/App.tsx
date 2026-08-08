@@ -185,6 +185,11 @@ function Entrada({ aoEntrar }) {
             cursor: "pointer", fontFamily: "inherit" }}>
           {modo === "entrar" ? "Ainda não tenho conta" : "Já tenho conta"}
         </button>
+        {modo === "entrar" && (
+            <button onClick={recuperarSenha} style={{ background: "none", border: "none", color: SAGE, fontSize: 12.5, marginTop: 10, cursor: "pointer", fontFamily: "inherit", display: "block", margin: "10px auto 0" }}>
+              Esqueci minha senha
+            </button>
+          )}
       </Card>
     </div>
   );
