@@ -409,6 +409,9 @@ function AppFamilia({ usuario, aoSair }) {
         acao={<button onClick={aoSair} style={{ background: "#EFE9DA", border: "none", borderRadius: 10,
           width: 36, height: 36, display: "flex", alignItems: "center", justifyContent: "center",
           cursor: "pointer" }}><LogOut size={16} color={GREEN} /></button>} />
+      <a href="https://wa.me/5514991528623" target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, background: "#25D366", color: "#fff", textDecoration: "none", padding: "10px 16px", borderRadius: 10, fontWeight: "bold", fontSize: 14, marginBottom: 16 }}>
+              💬 Falar com a Michelle
+            </a>
 
       {notificacoes.map((n) => (
         <Card key={n.id} style={{ marginBottom: 12, borderLeft: `4px solid ${CORAL}`, background: "#FFF9F5" }}>
