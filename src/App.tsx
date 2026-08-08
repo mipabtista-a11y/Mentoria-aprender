@@ -9,7 +9,7 @@ import TriagemForm, { TRIAGEM_VAZIA } from "./TriagemForm.jsx";
 import RevisaoPlano from "./RevisaoPlano";
 import PainelLembretes from "./PainelLembretes.jsx";
 import FolhaAtividade from "./FolhaAtividade";
-import { gerarPlano } from "./gerarPlano.js";
+import { gerarPlano, gerarPlanoComHistorico } from "./gerarPlano.js";
 import { BIBLIOTECA } from "./biblioteca.js";
 import { materialProntoDe } from "./materiaisProntos.js";
 
