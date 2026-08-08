@@ -344,3 +344,28 @@ export function gerarPlano(triagem, biblioteca) {
     aprovado: false,
   };
 }
+/**
+ * Gera um novo plano levando em conta o histórico de registros:
+ * - Remove atividades que a criança já fez com sucesso ("Sim")
+ * - Prioriza atividades do plano anterior que ficaram pendentes (sem registro)
+ */
+export function gerarPlanoComHistorico(triagem, biblioteca, registrosHistorico, planoAnteriorDados) {
+  const feitosComSucesso = new Set(
+    (registrosHistorico || []).filter((r) => r.conseguiu === "Sim").map((r) => r.atividade)
+  );
+  const feitos = new Set((registrosHistorico || []).map((r) => r.atividade));
+  const pendentes = new Set(
+    (planoAnteriorDados?.dias || [])
+      .map((d) => d.jogo?.titulo)
+      .filter((titulo) => titulo && !feitos.has(titulo))
+  );
+
+  const bibliotecaAjustada = {};
+  for (const [habilidade, jogos] of Object.entries(biblioteca)) {
+    const disponiveis = (jogos || []).filter((j) => !feitosComSucesso.has(j.titulo));
+    disponiveis.sort((a, b) => (pendentes.has(b.titulo) ? 1 : 0) - (pendentes.has(a.titulo) ? 1 : 0));
+    bibliotecaAjustada[habilidade] = disponiveis.length ? disponiveis : (jogos || []);
+  }
+
+  return gerarPlano(triagem, bibliotecaAjustada);
+}
