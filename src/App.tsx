@@ -204,12 +204,7 @@ function Entrada({ aoEntrar }) {
             <button onClick={recuperarSenha} style={{ background: "none", border: "none", color: SAGE, fontSize: 12.5, marginTop: 10, cursor: "pointer", fontFamily: "inherit", display: "block", margin: "10px auto 0" }}>
               Esqueci minha senha
             </button>
-      {modo === "entrar" && (
-            <button onClick={recuperarSenha} style={{ background: "none", border: "none", color: SAGE, fontSize: 12.5, marginTop: 10, cursor: "pointer", fontFamily: "inherit", display: "block", margin: "10px auto 0" }}>
-              Esqueci minha senha
-            </button>
-          )}      
-          )}
+         )}
       </Card>
     </div>
   );
