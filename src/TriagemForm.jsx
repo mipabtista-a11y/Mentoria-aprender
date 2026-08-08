@@ -248,9 +248,11 @@ export default function TriagemForm({ valor, onChange, onEnviar, enviando }) {
                 <Opcoes options={["Não", "Sim"]} value={t.extracurricular} onChange={set("extracurricular")} />
                 {t.extracurricular === "Sim" && (
                   <Complemento>
-                    <Campo largura={2} label="Qual(is)" value={t.qualExtracurricular} onChange={set("qualExtracurricular")}
-                      placeholder="ex: vôlei, inglês" />
-                  </Complemento>
+                <Campo largura={2} label="Qual(is)" value={t.qualExtracurricular} onChange={set("qualExtracurricular")}
+                  placeholder="ex: vôlei, inglês" />
+                <Campo largura={2} label="Quantos dias por semana" value={t.diasExtracurricularSemana} onChange={set("diasExtracurricularSemana")}
+                  placeholder="ex: 2" />
+              </Complemento>
                 )}
               </Pergunta>
 
@@ -278,10 +280,16 @@ export default function TriagemForm({ valor, onChange, onEnviar, enviando }) {
                   value={t.temDiagnostico} onChange={set("temDiagnostico")} />
                 {(t.temDiagnostico === "Sim" || t.temDiagnostico === "Em investigação") && (
                   <Complemento>
-                    <Campo largura={2} label="Qual(is)" value={t.qualDiagnostico} onChange={set("qualDiagnostico")} />
-                  </Complemento>
-                )}
-              </Pergunta>
+                <Campo largura={2} label="Qual(is)" value={t.qualDiagnostico} onChange={set("qualDiagnostico")} />
+                  <div style={{ marginTop: 8, fontSize: 13, color: "#4C6144", background: "#FCF7F0", padding: 10, borderRadius: 8 }}>
+                    📄 Se já tiver o laudo em mãos, envie uma foto ou PDF direto pelo WhatsApp:{" "}
+                    <a href="https://wa.me/5514991528623" target="_blank" rel="noopener noreferrer" style={{ color: "#E78A6B", fontWeight: "bold" }}>
+                      clique aqui para enviar
+                    </a>
+                  </div>
+                </Complemento>
+              )}
+            </Pergunta>   
 
               <Pergunta numero="4" texto="Faz uso de alguma medicação?">
                 <Opcoes options={["Não", "Sim"]} value={t.usaMedicacao} onChange={set("usaMedicacao")} />
