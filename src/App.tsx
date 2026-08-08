@@ -725,12 +725,13 @@ function AppMichelle({ usuario, aoSair }) {
   const carregar = useCallback(async () => {
     const { data } = await supabase.from("criancas").select("*").order("created_at", { ascending: false });
     for (const c of data || []) {
-      const [{ data: plano }, { data: triagem }, { data: regs }, { count: msgsNaoLidas },{ data: gam}] = await Promise.all([
+      const [{ data: plano }, { data: triagem }, { data: regs }, { data: regsTodos }, { count: msgsNaoLidas },{ data: gam}] = await Promise.all([
         supabase.from("planos").select("*").eq("crianca_id", c.id)
           .order("created_at", { ascending: false }).limit(1).maybeSingle(),
         supabase.from("triagens").select("*").eq("crianca_id", c.id).maybeSingle(),
         supabase.from("registros").select("*").eq("crianca_id", c.id)
           .gte("date", inicioDaSemana()),
+        supabase.from("registros").select("*").eq("crianca_id", c.id),
         supabase.from("mensagens_chat").select("id", { count: "exact", head: true })
           .eq("crianca_id", c.id).eq("lida", false).neq("user_id", usuario.id),
         supabase.from("gamificacao_crianca").select("*").eq("crianca_id", c.id).maybeSingle(),
@@ -739,6 +740,14 @@ function AppMichelle({ usuario, aoSair }) {
       c.gamificacao = gam || { total_pontos: 0, total_selos: 0, sequencia_atual: 0 };
       c.triagem = triagem;
       c.registrosSemana = regs || [];
+     if (c.plano && c.plano.status === "approved" && c.plano.approved_at && triagem) {
+          const dias = (Date.now() - new Date(c.plano.approved_at).getTime()) / 86400000;
+          if (dias >= 6) {
+            const historico = regsTodos || [];
+            const novoPlano = gerarPlanoComHistorico(triagemDoBanco(triagem), BIBLIOTECA, historico, c.plano.dados);
+            await supabase.from("planos").insert({ crianca_id: c.id, dados: novoPlano, status: "pending" });
+          }
+        } 
       c.mensagensNaoLidas = msgsNaoLidas || 0;
     }
     setCriancas(data || []);
