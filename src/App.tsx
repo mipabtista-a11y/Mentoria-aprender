@@ -154,6 +154,21 @@ function Entrada({ aoEntrar }) {
       setOcupado(false);
     }
   }
+  async function recuperarSenha() {
+      if (!email) { setErro("Digite seu e-mail no campo acima primeiro."); return; }
+      setOcupado(true); setErro("");
+      try {
+        const { error } = await supabase.auth.resetPasswordForEmail(email, {
+          redirectTo: window.location.origin,
+        });
+        if (error) throw error;
+        setErro("Enviamos um e-mail com o link para redefinir sua senha.");
+      } catch (e) {
+        setErro(traduzirErro(e.message));
+      } finally {
+        setOcupado(false);
+      }
+    }
 
   return (
     <div style={{ maxWidth: 380, margin: "50px auto", textAlign: "center" }}>
